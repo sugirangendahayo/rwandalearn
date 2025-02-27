@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@plugin "daisyui";
+@import "tailwindcss";
+
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+.parent-badges{
+  @apply grid mt-7 md:grid-cols-4 px-4 py-2 items-center rounded-[50px] gap-4 md:shadow-[0px_0px_6px_lightgray];
+}
+.badges{
+  @apply flex items-center justify-around p-2 shadow-[0px_0px_6px_lightgray] md:shadow-none  rounded-[5px] md:rounded-none;
+}
+.badges div span:first-child{
+  @apply font-semibold;
+}
+.badges div span:last-child{
+  @apply block text-[12px] text-gray-600;
+}
+.text-category{
+ @apply block text-[16px] font-semibold text-center text-cyan-700 px-2 hover:text-cyan-600;
+}
+.category-badges{
+  @apply shadow-[0px_0px_6px_lightgray] px-2 md:px-0 hover:scale-105 hover:sm:scale-105 rounded-sm hover:md:scale-110 hover:border-[1px] hover:border-cyan-400 hover:rounded-[10px] hover:transition-all hover:duration-300 cursor-pointer;
+}
+
