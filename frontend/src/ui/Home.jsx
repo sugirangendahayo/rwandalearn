@@ -18,14 +18,21 @@ import aiboat from "../assets/images/aibot.png";
 import badge from "../assets/images/badge.png";
 import roboticon from "../assets/images/robot.png";
 import traductionicon from "../assets/images/traduction.png";
+
 // import roboticon from "../assets/images/robot.png";
 // import roboticon from "../assets/images/robot.png";
 // import image10 from "../assets/images/";
 import TypewriterComponent from "../utils/TypewriterComponent";
 import initializeAOS from "../utils/aosConfig";
 import ScrollTop from "../utils/ScrollTop";
+import { InfiniteMovingCards } from "../utils/Infinite-moving-card";
 
 const Home = () => {
+    const items = [
+      { name: "John Doe", title: "Engineer", quote: "This is a test quote." },
+      { name: "Jane Smith", title: "Designer", quote: "Another test quote." },
+    ];
+
   useEffect(() => {
     initializeAOS();
   });
@@ -270,35 +277,39 @@ const Home = () => {
             <div className="category-badges">
               <span className="flex justify-center py-4">
                 {" "}
-                <img src={image8} alt="" className="max-w-20 " />
+                <img src={roboticon} alt="" className="max-w-20 " />
               </span>
-              <span className="text-category px-2">Beauty & personal care</span>
+              <span className="text-category">Ai chat and assistance</span>
             </div>
             <div className="category-badges">
               <span className="flex justify-center py-4">
                 {" "}
-                <img src={image10} alt="" className="max-w-20 " />
+                <img src={traductionicon} alt="" className="max-w-20 " />
               </span>
-              <span className="text-category">Sports and entertainment</span>
+              <span className="text-category">Clothing and accessories</span>
             </div>
             <div className="category-badges">
               <span className="flex justify-center py-4">
                 {" "}
-                <img src={image12} alt="" className="max-w-20 " />
+                <img src={roboticon} alt="" className="max-w-20 " />
               </span>
-              <span className="text-category">Luggage and/ bags</span>
+              <span className="text-category">Ai chat and assistance</span>
             </div>
             <div className="category-badges">
               <span className="flex justify-center py-4">
                 {" "}
-                <img src={image11} alt="" className="max-w-20 " />
+                <img src={traductionicon} alt="" className="max-w-20 " />
               </span>
-              <span className="text-category">Home decor and furnitures</span>
+              <span className="text-category">Clothing and accessories</span>
             </div>
           </div>
         </div>
+        <div>
+          <InfiniteMovingCards items={items} />
+        </div>
       </section>
     </>
+    // Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quae iste, labore molestiae quam optio molestias deserunt ad harum ab at porro pariatur expedita, repellendus nostrum eos. Impedit, laborum fugiat.
   );
 };
 

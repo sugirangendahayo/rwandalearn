@@ -11,6 +11,7 @@ const Register = () => {
     first_name: "",
     last_name: "",
     phonenumber: "",
+    nationality: "",
     email: "",
     password: "",
   });
@@ -83,12 +84,17 @@ const Register = () => {
                 />
               </div>
               <div className="px-2 mb-2">
-                <select className="w-full border-basic-border h-10 px-3 outline-none rounded-sm">
-                  <option value="">Your nationnality</option>
-                  <option value="">USA</option>
-                  <option value="">CONGO</option>
-                  <option value="">SUDAN</option>
-                  <option value="">LIBERIA</option>
+                <select
+                  name="nationality"
+                  onChange={handleInputChange}
+                  value={formData.nationality}
+                  className="w-full border-basic-border h-10 px-3 outline-none rounded-sm"
+                >
+                  <option value="">Your nationality</option>
+                  <option value="USA">USA</option>
+                  <option value="CONGO">CONGO</option>
+                  <option value="SUDAN">SUDAN</option>
+                  <option value="LIBERIA">LIBERIA</option>
                 </select>
               </div>
               <div className="px-2 mb-2">

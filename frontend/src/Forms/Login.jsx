@@ -1,61 +1,63 @@
 /* eslint-disable no-unused-vars */
-import React, {
-    //  useContext, 
-     useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import axiosInstance from "../axiosIntance";
 import Swal from "sweetalert2";
-// import { UserContext } from "../context/HookContext";
+import { UserContext } from "../context/HookContext";
+import axiosInstance from "../axiosIntance";
 
 const Login = () => {
-  const [errorLogin, seterrorLogin] = useState();
+  const [errorLogin, setErrorLogin] = useState("");
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
-//   const { setAuth, setName } = useContext(UserContext); // Access context methods
+  const { setAuth, setUserDetails, fetchUserData } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axiosInstance
-      .post("/auth/login", values)
-      .then((res) => {
-        if (res.status === 200) {
-          const { message, role } = res.data;
+    try {
+      const res = await axiosInstance.post("/auth/login", values);
 
-          // Update context
-        //   setAuth(true); // Set user as authenticated
-          // setName(name); // Save the user's name globally
+      if (res.status === 200) {
+        const { message, role, token, user } = res.data;
 
-          Swal.fire({
-            title: "Success!",
-            text: message,
-            icon: "success",
-          });
+        // Store token and set axios header
+        localStorage.setItem("token", token);
+        axiosInstance.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${token}`;
 
-          // Navigate based on role
-          switch (role) {
-            case "admin":
-              navigate("/adminpage");
-              break;
-            case "user":
-              navigate("/");
-              break;
-            default:
-              navigate("/22");
-          }
-        } else {
-          seterrorLogin("Invalid email or password");
-          console.log(res.data.Error);
+        // Update context
+        setAuth(true);
+        setUserDetails(user);
+
+        // Refetch user data to ensure scores and details are loaded
+        await fetchUserData();
+
+        Swal.fire({
+          title: "Success!",
+          text: message,
+          icon: "success",
+        });
+
+        // Navigate based on role
+        switch (role) {
+          case "user":
+            navigate("/dashboard");
+            break;
+          default:
+            navigate("/22");
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        seterrorLogin("An error occurred during login");
-      });
+      }
+    } catch (err) {
+      console.log(err);
+      const errorMessage =
+        err.response?.data?.Error || "An error occurred during login";
+      setErrorLogin(errorMessage);
+    }
   };
 
   return (
@@ -74,9 +76,11 @@ const Login = () => {
           <div className="px-2">
             <div className="py-3 text-center">
               <h1 className="text-xl font-medium">Login</h1>
-              <div className="bg-red-200 w-frame-width rounded m-auto">
-                <h1>{errorLogin}</h1>
-              </div>
+              {errorLogin && (
+                <div className="bg-red-200 w-frame-width rounded m-auto mt-2 p-2">
+                  <h1>{errorLogin}</h1>
+                </div>
+              )}
             </div>
             <div className="px-2 mb-2">
               <input

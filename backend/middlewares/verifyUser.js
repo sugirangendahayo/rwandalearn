@@ -6,7 +6,9 @@ dotenv.config();
 function verifyUser(...allowedRoles) {
   console.log("Verifying user...");
   return (req, res, next) => {
-    const token = req.cookies.token;
+    // Get token from Authorization header
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(" ")[1]; // Bearer TOKEN
 
     if (!token) {
       return res.status(401).json({ Error: "You are not authenticated" });
@@ -28,9 +30,10 @@ function verifyUser(...allowedRoles) {
           return res.status(403).json({ Error: "Forbidden" });
         }
 
-        //Here i Attach email and role to the request object for further use
+        // Attach email and role to the request object
         req.email = decoded.email;
         req.role = decoded.role;
+        req.user = decoded; // Attach full decoded user data
 
         next();
       } else {

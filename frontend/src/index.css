@@ -23,4 +23,13 @@ body {
 .category-badges{
   @apply shadow-[0px_0px_6px_lightgray] px-2 md:px-0 hover:scale-105 hover:sm:scale-105 rounded-sm hover:md:scale-110 hover:border-[1px] hover:border-cyan-400 hover:rounded-[10px] hover:transition-all hover:duration-300 cursor-pointer;
 }
+.topic{
+ @apply p-2 shadow-md rounded-[10px] m-2 hover:bg-gray-400 duration-300 hover:transition-all cursor-pointer hover:text-white py-2
+}
+.topic-title{
+ @apply text-[22px]  font-semibold
+}
+.text-descr{
+ @apply inline-block text-gray-700
+}
 

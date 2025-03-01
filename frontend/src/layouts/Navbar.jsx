@@ -30,37 +30,18 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link>Home</Link>
-              </li>
-              <li>
-                <Link>Special offers</Link>
-              </li>
-              <li>
-                <details>
-                  <summary>Quick finds</summary>
-                  <ul className="p-2">
-                    <li>
-                      <Link>Submenu 1</Link>
-                    </li>
-                    <li>
-                      <Link>Submenu 2</Link>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <Link>Quick Find</Link>
+                <Link to="/">Home</Link>
               </li>
               <li>
                 <Link>News</Link>
               </li>
               <li>
-                <Link>Contact</Link>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </div>
           <span className="font-semibold text-[24px]">
-            Ab<span className="text-cyan-900">aya</span>
+            Kinya<span className="text-cyan-900">learn</span>
           </span>
         </div>
         <div className="navbar-start hidden lg:flex">
@@ -143,29 +124,14 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex justify-around">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link>Home</Link>
+              <Link to="/">Home</Link>
+            </li>
+          
+            <li>
+              <Link>Blogs</Link>
             </li>
             <li>
-              <Link>Special offers</Link>
-            </li>
-            <li>
-              <details>
-                <summary>Quick finds</summary>
-                <ul className="p-2">
-                  <li>
-                    <Link>Submenu 1</Link>
-                  </li>
-                  <li>
-                    <Link>Submenu 2</Link>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <Link>News</Link>
-            </li>
-            <li>
-              <Link>Contact</Link>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
           <div>
